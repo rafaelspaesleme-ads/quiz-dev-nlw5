@@ -1,3 +1,4 @@
+import 'package:DevQuiz/challenge/challenge_page.dart';
 import 'package:DevQuiz/challenge/widgets/quiz/quiz_widget.dart';
 import 'package:DevQuiz/core/app_colors.dart';
 import 'package:DevQuiz/home/home_state.dart';
@@ -76,7 +77,17 @@ class _HomePageState extends State<HomePage> {
                     title: e.title, 
                     percent: e.questionAnswered/e.questions.length, 
                     stateInit: e.questionAnswered,
-                    stateTotal: e.questions.length
+                    stateTotal: e.questions.length, 
+                    onTab: () {
+                      Navigator.push(
+                        context, 
+                        MaterialPageRoute(
+                          builder: (context) => ChallengePage(
+                            questions: e.questions,
+                          )
+                        )
+                      );
+                    },
                   ))
                   .toList(),
                 ),
