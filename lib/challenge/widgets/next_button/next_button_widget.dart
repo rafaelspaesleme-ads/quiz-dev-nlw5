@@ -5,9 +5,17 @@ import 'package:google_fonts/google_fonts.dart';
 class NextButtonWidget extends StatelessWidget {
   final String label;
   final bool confirm;
+  final bool purple;
+  final bool transparent;
   final VoidCallback onTab;
 
-  NextButtonWidget({required this.label, this.confirm = false, required this.onTab});
+  NextButtonWidget({
+    required this.label, 
+    this.confirm = false, 
+    required this.onTab,
+    this.purple = false,
+    this.transparent = false
+    });
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +24,9 @@ class NextButtonWidget extends StatelessWidget {
       child: TextButton(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(
-            confirm ? AppColors.darkGreen : AppColors.white
+            transparent 
+              ? Colors.transparent
+              : confirm ? (purple ? AppColors.purple : AppColors.darkGreen) : AppColors.white
           ),
           shape: MaterialStateProperty.all(
             RoundedRectangleBorder(
@@ -25,7 +35,9 @@ class NextButtonWidget extends StatelessWidget {
           ),
           side: MaterialStateProperty.all(
             BorderSide(
-              color: confirm ? AppColors.lightGreen : AppColors.border
+              color: transparent
+                ? Colors.transparent
+                : confirm ? (purple ? AppColors.lightGrey : AppColors.lightGreen) : AppColors.border
             )
           )
         ),
@@ -35,7 +47,9 @@ class NextButtonWidget extends StatelessWidget {
           style: GoogleFonts.notoSans(
             fontWeight: FontWeight.w600,
             fontSize: 15,
-            color: confirm ? AppColors.white : AppColors.grey
+            color: transparent
+              ? AppColors.grey
+              : confirm ? AppColors.white : AppColors.grey
           ),
         )
       )
